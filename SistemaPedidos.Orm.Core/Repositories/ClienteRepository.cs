@@ -14,6 +14,8 @@ namespace SistemaPedidos.Orm.Core.Repositories
 
         public async Task<bool> AdicionaCliente(Cliente cliente)
         {
+            var adesaoExistente = await _context.Adesao.FirstOrDefaultAsync(c => c.Id == cliente.IdAdesao);
+            cliente.AdesaoCliente = adesaoExistente;
             await _context.Cliente.AddAsync(cliente);
             var saved = await _context.SaveChangesAsync();
             return saved >= 1;

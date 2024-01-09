@@ -7,5 +7,8 @@ namespace SistemaPedidos.API.Services.AuthenticationService.Navigator
     {
         [Post("/authentication/login")]
         Task<LoginResponseViewModel> Login([Body] LoginUsuarioViewModel loginUsuarioViewModel,  CancellationToken cancellationToken);
+
+        [Post("/authentication/register")]
+        Task<string> Register([Body] RegisterUserAuthServiceViewModel registerUser, CancellationToken cancellationToken);
     }
 }

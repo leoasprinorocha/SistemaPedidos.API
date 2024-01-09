@@ -11,10 +11,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="DomainValidation" Version="1.0.0" />
     <PackageReference Include="TinyMapper" Version="3.0.3" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SistemaPedidos.API.Services\SistemaPedidos.API.Services.csproj" />
     <ProjectReference Include="..\SistemaPedidos.Domain\SistemaPedidos.Domain.csproj" />
     <ProjectReference Include="..\SistemaPedidos.Orm.Core\SistemaPedidos.Orm.Core.csproj" />
   </ItemGroup>

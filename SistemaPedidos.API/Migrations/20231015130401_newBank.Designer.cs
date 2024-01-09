@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SistemaPedidos.Orm.Core;
 
@@ -10,9 +11,10 @@ using SistemaPedidos.Orm.Core;
 namespace SistemaPedidos.API.Migrations
 {
     [DbContext(typeof(SistemaPedidosContext))]
-    partial class SistemaPedidosContextModelSnapshot : ModelSnapshot
+    [Migration("20231015130401_newBank")]
+    partial class newBank
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -75,31 +77,6 @@ namespace SistemaPedidos.API.Migrations
                     b.HasIndex("AdesaoClienteId");
 
                     b.ToTable("Cliente");
-                });
-
-            modelBuilder.Entity("SistemaPedidos.Domain.Entities.Produto", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
-
-                    b.Property<string>("Descricao")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<Guid>("IdAdesao")
-                        .HasColumnType("char(36)");
-
-                    b.Property<double>("Preco")
-                        .HasColumnType("double");
-
-                    b.Property<string>("UrlFoto")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Produto");
                 });
 
             modelBuilder.Entity("SistemaPedidos.Domain.Entities.Sistema.Modulo", b =>

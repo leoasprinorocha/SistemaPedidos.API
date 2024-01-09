@@ -18,5 +18,12 @@ namespace SistemaPedidos.API.Services.AuthenticationService.Services
             var loginResponse = await navigator.Login(loginUsuarioViewModel, GetCancellationToken());
             return loginResponse;
         }
+
+        public async Task<string> Register(RegisterUserAuthServiceViewModel registerUser)
+        {
+            var navigator = GetNavigator();
+            var registerResponse = await navigator.Register(registerUser, GetCancellationToken());
+            return registerResponse;
+        }
     }
 }

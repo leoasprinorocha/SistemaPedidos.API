@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using SistemaPedidos.Domain.Entities;
 using SistemaPedidos.Domain.Entities.AdesaoEmpresa;
 using SistemaPedidos.Domain.Entities.Clientes;
 using SistemaPedidos.Domain.Entities.Sistema;
@@ -24,6 +25,7 @@ namespace SistemaPedidos.Orm.Core
         public DbSet<Modulo> Modulo { get; set; }
         public DbSet<Rotina> Rotina { get; set; }
         public DbSet<Cliente> Cliente { get; set; }
+        public DbSet<Produto> Produto { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

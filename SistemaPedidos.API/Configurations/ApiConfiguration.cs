@@ -42,6 +42,9 @@ namespace SistemaPedidos.API.Configurations
             services.AddScoped<IClienteRepository, ClienteRepository>();
             services.AddScoped<IClienteBusiness, ClienteBusiness>();
 
+            services.AddScoped<IProdutoRepository, ProdutoRepository>();
+            services.AddScoped<IProdutoBusiness, ProdutoBusiness>();
+
             #endregion
         }
     }
