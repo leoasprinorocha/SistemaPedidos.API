@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using SistemaPedidos.Domain.Entities;
 using SistemaPedidos.Domain.Entities.AdesaoEmpresa;
 using SistemaPedidos.Domain.Entities.Clientes;
+using SistemaPedidos.Domain.Entities.Pedidos;
 using SistemaPedidos.Domain.Entities.Sistema;
 using SistemaPedidos.Domain.Entities.Usuario;
 
@@ -26,6 +27,10 @@ namespace SistemaPedidos.Orm.Core
         public DbSet<Rotina> Rotina { get; set; }
         public DbSet<Cliente> Cliente { get; set; }
         public DbSet<Produto> Produto { get; set; }
+        public DbSet<Pedido> Pedido { get; set; }
+        public DbSet<PedidoProduto> PedidoProduto { get; set; }
+        public DbSet<StatusPedido> StatusPedido { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

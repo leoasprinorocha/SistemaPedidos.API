@@ -21,17 +21,36 @@ namespace SistemaPedidos.Orm.Core.Repositories
 
         public async Task<bool> AtualizaProduto(Produto produto)
         {
-            throw new NotImplementedException();
+            var produtoExistente = await _context.Produto.FirstOrDefaultAsync(c => c.Id == produto.Id);
+            if (produtoExistente is not null)
+            {
+                produtoExistente.Descricao = produto.Descricao;
+                produtoExistente.Preco = produto.Preco;
+                _context.Produto.Update(produtoExistente);
+                var updated = await _context.SaveChangesAsync();
+                return updated >= 1;
+
+            }
+            return false;
         }
 
         public async Task<bool> ExcluirProduto(Guid idProduto)
         {
-            throw new NotImplementedException();
+            var produtoExiste = await _context.Produto.FirstOrDefaultAsync(x => x.Id == idProduto);
+            if (produtoExiste is not null)
+            {
+                _context.Produto.Remove(produtoExiste);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+
+            return false;
         }
 
         public async Task<Produto> RecuperaProdutoPorId(Guid idProduto)
         {
-            throw new NotImplementedException();
+            var produto = await _context.Produto.FirstOrDefaultAsync(c => c.Id == idProduto);
+            return produto;
         }
 
         public async Task<List<Produto>> RecuperaTodosProdutosAdesao(Guid idAdesao)

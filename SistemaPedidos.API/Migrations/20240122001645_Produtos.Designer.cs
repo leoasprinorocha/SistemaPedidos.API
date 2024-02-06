@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SistemaPedidos.Orm.Core;
 
@@ -10,9 +11,10 @@ using SistemaPedidos.Orm.Core;
 namespace SistemaPedidos.API.Migrations
 {
     [DbContext(typeof(SistemaPedidosContext))]
-    partial class SistemaPedidosContextModelSnapshot : ModelSnapshot
+    [Migration("20240122001645_Produtos")]
+    partial class Produtos
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -27,9 +29,6 @@ namespace SistemaPedidos.API.Migrations
 
                     b.Property<bool>("Ativo")
                         .HasColumnType("tinyint(1)");
-
-                    b.Property<long>("CodigoAdesao")
-                        .HasColumnType("bigint");
 
                     b.Property<string>("NomeEmpresa")
                         .IsRequired()
@@ -130,9 +129,6 @@ namespace SistemaPedidos.API.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<Guid>("IdAdesao")
-                        .HasColumnType("char(36)");
-
                     b.HasKey("Id");
 
                     b.ToTable("StatusPedido");
@@ -228,9 +224,6 @@ namespace SistemaPedidos.API.Migrations
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("longtext");
-
-                    b.Property<int>("TipoUsuario")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

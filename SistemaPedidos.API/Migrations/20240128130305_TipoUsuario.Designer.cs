@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SistemaPedidos.Orm.Core;
 
@@ -10,9 +11,10 @@ using SistemaPedidos.Orm.Core;
 namespace SistemaPedidos.API.Migrations
 {
     [DbContext(typeof(SistemaPedidosContext))]
-    partial class SistemaPedidosContextModelSnapshot : ModelSnapshot
+    [Migration("20240128130305_TipoUsuario")]
+    partial class TipoUsuario
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -27,9 +29,6 @@ namespace SistemaPedidos.API.Migrations
 
                     b.Property<bool>("Ativo")
                         .HasColumnType("tinyint(1)");
-
-                    b.Property<long>("CodigoAdesao")
-                        .HasColumnType("bigint");
 
                     b.Property<string>("NomeEmpresa")
                         .IsRequired()

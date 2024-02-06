@@ -39,12 +39,17 @@ namespace SistemaPedidos.API.Configurations
             services.AddScoped<ISistemaBusiness, SistemaBusiness>();
             services.AddScoped<ISistemaRepository, SistemaRepository>();
 
+            services.AddScoped<IPedidoBusiness, PedidoBusiness>();
+            services.AddScoped<IPedidoRepository, PedidoRepository>();
+
             services.AddScoped<IClienteRepository, ClienteRepository>();
             services.AddScoped<IClienteBusiness, ClienteBusiness>();
 
             services.AddScoped<IProdutoRepository, ProdutoRepository>();
             services.AddScoped<IProdutoBusiness, ProdutoBusiness>();
 
+            services.AddScoped<IAdesaoRepository, AdesaoRepository>();
+            services.AddScoped<IAdesaoBusiness, AdesaoBusiness>();
             #endregion
         }
     }

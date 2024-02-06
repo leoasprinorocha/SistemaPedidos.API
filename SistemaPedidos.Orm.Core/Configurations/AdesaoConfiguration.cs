@@ -10,6 +10,11 @@ namespace SistemaPedidos.Orm.Core.Configurations
         {
             builder.HasKey(p => p.Id);
 
+            builder.Property(p => p.CodigoAdesao)
+                .HasColumnType("number(10)")
+                .ValueGeneratedOnAdd()
+                .IsRequired();
+
             builder.Property(p => p.Id)
                 .HasColumnType("varchar(36)")
                 .IsRequired();

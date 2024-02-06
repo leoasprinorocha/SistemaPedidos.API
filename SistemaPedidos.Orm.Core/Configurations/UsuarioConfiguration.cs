@@ -34,6 +34,9 @@ namespace SistemaPedidos.Orm.Core.Configurations
                             .HasColumnType("varchar(36)")
                             .IsRequired();
 
+            builder.Property(p => p.TipoUsuario)
+            .HasColumnType("number(1)")
+            .IsRequired();
 
             builder.HasOne(c => c.AdesaoUsuario)
             .WithMany()
