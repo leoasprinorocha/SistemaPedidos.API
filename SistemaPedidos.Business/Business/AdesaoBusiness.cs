@@ -1,7 +1,9 @@
 ﻿using Nelibur.ObjectMapper;
 using SistemaPedidos.Domain.Entities.AdesaoEmpresa;
+using SistemaPedidos.Domain.Exceptions;
 using SistemaPedidos.Domain.Interfaces.Business;
 using SistemaPedidos.Domain.Interfaces.Repository;
+using SistemaPedidos.Domain.Validators;
 using SistemaPedidos.Domain.ViewModels.Adesao;
 
 namespace SistemaPedidos.Business.Business
@@ -27,6 +29,10 @@ namespace SistemaPedidos.Business.Business
         {
             Adesao novaAdesao = TinyMapper.Map<Adesao>(adesao);
             novaAdesao.Id = Guid.NewGuid();
+            novaAdesao.Ativo = true;
+            var validation = new IsAdesaoValid().Validate(novaAdesao);
+            if (!validation.IsValid)
+                throw new BadRequestException(string.Join(",", validation.Erros.Select(c => c.Message)));
             var saved = await _adesaoRepository.CadastrarAdesao(novaAdesao);
             return saved;
         }

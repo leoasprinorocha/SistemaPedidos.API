@@ -1,5 +1,4 @@
 ﻿using SistemaPedidos.Domain.Entities.Pedidos;
-using SistemaPedidos.Domain.ViewModels.Pedido;
 
 namespace SistemaPedidos.Domain.Interfaces.Repository
 {

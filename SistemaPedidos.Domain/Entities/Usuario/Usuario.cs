@@ -10,6 +10,7 @@ namespace SistemaPedidos.Domain.Entities.Usuario
         public Guid IdAdesao { get; set; }
         public Guid IdAspnetUser { get; set; }
         public TipoUsuario TipoUsuario { get; set; }
+        public bool Ativo{ get; set; }
 
         public virtual Adesao AdesaoUsuario { get; set; }
 

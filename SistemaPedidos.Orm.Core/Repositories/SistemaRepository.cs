@@ -14,7 +14,7 @@ namespace SistemaPedidos.Orm.Core.Repositories
         }
         public async Task<IEnumerable<Modulo>> RecuperaModulosSistema()
         {
-            var modulos = await _context.Modulo.Include(a => a.Rotinas).ToListAsync();
+            var modulos = await _context.Modulo.AsNoTracking().Include(a => a.Rotinas).ToListAsync();
             return modulos;
         }
     }

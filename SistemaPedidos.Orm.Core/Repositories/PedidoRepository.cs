@@ -50,14 +50,14 @@ namespace SistemaPedidos.Orm.Core.Repositories
 
         public async Task<List<StatusPedido>> RecuperaStatusPedidoAdesao(Guid idAdesao)
         {
-            var statusPedidoAdesao = await _context.StatusPedido.Where(c => c.IdAdesao == idAdesao).ToListAsync();
+            var statusPedidoAdesao = await _context.StatusPedido.AsNoTracking().Where(c => c.IdAdesao == idAdesao).ToListAsync();
             return statusPedidoAdesao;
         }
 
         public async Task<StatusPedido> RecuperaStatusPedidoPorId(Guid idStatus)
         {
             StatusPedido statusPedido;
-            statusPedido = await _context.StatusPedido.FirstOrDefaultAsync(o => o.Id == idStatus);
+            statusPedido = await _context.StatusPedido.AsNoTracking().FirstOrDefaultAsync(o => o.Id == idStatus);
             return statusPedido;
         }
     }

@@ -49,13 +49,13 @@ namespace SistemaPedidos.Orm.Core.Repositories
 
         public async Task<Produto> RecuperaProdutoPorId(Guid idProduto)
         {
-            var produto = await _context.Produto.FirstOrDefaultAsync(c => c.Id == idProduto);
+            var produto = await _context.Produto.AsNoTracking().FirstOrDefaultAsync(c => c.Id == idProduto);
             return produto;
         }
 
         public async Task<List<Produto>> RecuperaTodosProdutosAdesao(Guid idAdesao)
         {
-            var produtos = await _context.Produto.Where(c => c.IdAdesao == idAdesao).ToListAsync();
+            var produtos = await _context.Produto.AsNoTracking().Where(c => c.IdAdesao == idAdesao).ToListAsync();
             return produtos;
         }
     }

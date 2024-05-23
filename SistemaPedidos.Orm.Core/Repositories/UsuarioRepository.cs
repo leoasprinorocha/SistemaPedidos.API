@@ -46,8 +46,14 @@ namespace SistemaPedidos.Orm.Core.Repositories
             return Guid.Empty;
         }
 
+        public async Task<List<Usuario>> RecuperaTodosUsuariosAdesao(Guid idAdesao)
+        {
+            var usuariosAdesao = await _context.Usuario.AsNoTracking().Where(c => c.IdAdesao == idAdesao).ToListAsync();
+            return usuariosAdesao;
+        }
+
         public async Task<Usuario> RecuperaUsuarioPeloLogin(string login) =>
-            await _context.Usuario.FirstOrDefaultAsync(c => c.Email.Equals(login));
+            await _context.Usuario.AsNoTracking().FirstOrDefaultAsync(c => c.Email.Equals(login));
 
 
     }

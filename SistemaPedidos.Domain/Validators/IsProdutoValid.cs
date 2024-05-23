@@ -1,7 +1,6 @@
 ﻿using DomainValidation.Validation;
 using SistemaPedidos.Domain.Entities;
 using SistemaPedidos.Domain.Validations.Produtos;
-using System;
 
 namespace SistemaPedidos.Domain.Validators
 {

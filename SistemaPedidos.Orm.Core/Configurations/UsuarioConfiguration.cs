@@ -30,6 +30,10 @@ namespace SistemaPedidos.Orm.Core.Configurations
                             .HasColumnType("varchar(36)")
                             .IsRequired();
 
+            builder.Property(p => p.Ativo)
+                    .HasColumnType("tinyint")
+                        .IsRequired();
+
             builder.Property(p => p.IdAspnetUser)
                             .HasColumnType("varchar(36)")
                             .IsRequired();

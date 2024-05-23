@@ -55,13 +55,13 @@ namespace SistemaPedidos.Orm.Core.Repositories
 
         public async Task<Cliente> RecuperaClientePorId(Guid idCliente)
         {
-            var cliente = await _context.Cliente.FirstOrDefaultAsync(c => c.Id == idCliente);
+            var cliente = await _context.Cliente.AsNoTracking().FirstOrDefaultAsync(c => c.Id == idCliente);
             return cliente;
         }
 
         public async Task<List<Cliente>> RecuperaTodosClientesPorAdesao(Guid idAdesao)
         {
-            var clientes = await _context.Cliente.Where(c => c.IdAdesao == idAdesao).ToListAsync();
+            var clientes = await _context.Cliente.AsNoTracking().Where(c => c.IdAdesao == idAdesao).ToListAsync();
             return clientes;
         }
     }

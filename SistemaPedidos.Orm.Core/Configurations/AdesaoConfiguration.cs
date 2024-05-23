@@ -19,6 +19,10 @@ namespace SistemaPedidos.Orm.Core.Configurations
                 .HasColumnType("varchar(36)")
                 .IsRequired();
 
+            builder.Property(p => p.Telefone)
+            .HasColumnType("varchar(11)")
+            .IsRequired();
+
             builder.Property(p => p.NomeEmpresa)
                 .HasColumnType("varchar(50)")
                 .IsRequired();

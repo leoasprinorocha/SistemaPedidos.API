@@ -1,10 +1,12 @@
 ﻿using Nelibur.ObjectMapper;
 using SistemaPedidos.API.Services.AuthenticationService.Services;
+using SistemaPedidos.Domain.Entities;
 using SistemaPedidos.Domain.Entities.Usuario;
 using SistemaPedidos.Domain.Interfaces.Business;
 using SistemaPedidos.Domain.Interfaces.Repository;
+using SistemaPedidos.Domain.ViewModels;
 using SistemaPedidos.Domain.ViewModels.Usuario;
-
+using SistemaPedidos.Orm.Core.Repositories;
 
 namespace SistemaPedidos.Business.Business
 {
@@ -17,6 +19,9 @@ namespace SistemaPedidos.Business.Business
         {
             _usuarioRepository = usuarioRepository;
             _apiAuthService = apiAuthService;
+
+            TinyMapper.Bind<UsuarioViewModel, Usuario>();
+            TinyMapper.Bind<Usuario, UsuarioViewModel>();
         }
         public async Task<UsuarioLogadoViewModel> Autenticar(string usuario, string senha)
         {
@@ -55,6 +60,14 @@ namespace SistemaPedidos.Business.Business
         {
             Guid idAdesao = await _usuarioRepository.RecuperaIdAdesaoPorIdAspnetUser(idAspnetUser);
             return idAdesao;
+        }
+
+        public async Task<List<UsuarioViewModel>> RecuperaUsuariosAdesao(Guid idAdesao)
+        {
+            List<UsuarioViewModel> usuarios = new();
+            var usuariosBanco = await _usuarioRepository.RecuperaTodosUsuariosAdesao(idAdesao);
+            usuariosBanco.ForEach(c => usuarios.Add(TinyMapper.Map<UsuarioViewModel>(c)));
+            return usuarios;
         }
     }
 }

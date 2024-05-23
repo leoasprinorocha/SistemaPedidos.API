@@ -3,6 +3,7 @@ using Amazon.S3;
 using Amazon.S3.Model;
 using Nelibur.ObjectMapper;
 using SistemaPedidos.Domain.Entities;
+using SistemaPedidos.Domain.Exceptions;
 using SistemaPedidos.Domain.Interfaces.Business;
 using SistemaPedidos.Domain.Interfaces.Repository;
 using SistemaPedidos.Domain.Validators;
@@ -27,7 +28,7 @@ namespace SistemaPedidos.Business.Business
             Produto novoProduto = TinyMapper.Map<Produto>(produtoViewModel);
             var validation = new IsProdutoValid().Validate(novoProduto);
             if (!validation.IsValid)
-                throw new Exception(validation.Message);
+                throw new BadRequestException(validation.Message);
 
             bool produtoFoiSalvo = await _produtoRepository.AdicionaProduto(novoProduto);
             return produtoFoiSalvo ?

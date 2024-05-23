@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SistemaPedidos.API.Services.AuthenticationService.Services;
+using SistemaPedidos.API.Utils;
 using SistemaPedidos.Domain.Interfaces.Business;
 using SistemaPedidos.Domain.ViewModels.Usuario;
 
@@ -22,11 +23,19 @@ namespace SistemaPedidos.API.Controllers
         [HttpGet("autenticar/{usuario}/{senha}")]
         public async Task<IActionResult> AutenticarUsuario(string usuario, string senha)
         {
+            senha = UtilCriptografia.Decrypt(senha);
             LoginUsuarioViewModel login = new() { Email = usuario, Password = senha };
             var autenticado = await _apiAuthService.Login(login);
             var idAdesao = await _usuarioBusiness.RecuperaIdAdesaoUsuarioPorIdAspnetUser(new Guid(autenticado.Id));
             autenticado.IdAdesao = idAdesao;
             return Ok(autenticado);
+        }
+
+        [HttpGet("recupera-usuarios-adesao/{adesaoId}")]
+        public async Task<IActionResult> RecuperaUsuariosAdesao(Guid adesaoId)
+        {
+            var usuariosAdesao = await _usuarioBusiness.RecuperaUsuariosAdesao(adesaoId);
+            return Ok(usuariosAdesao);
         }
 
         [HttpPost("cadastrar")]
