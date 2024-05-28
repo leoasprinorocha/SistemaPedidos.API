@@ -23,7 +23,6 @@ namespace SistemaPedidos.API.Controllers
         [HttpGet("autenticar/{usuario}/{senha}")]
         public async Task<IActionResult> AutenticarUsuario(string usuario, string senha)
         {
-            senha = UtilCriptografia.Decrypt(senha);
             LoginUsuarioViewModel login = new() { Email = usuario, Password = senha };
             var autenticado = await _apiAuthService.Login(login);
             var idAdesao = await _usuarioBusiness.RecuperaIdAdesaoUsuarioPorIdAspnetUser(new Guid(autenticado.Id));
