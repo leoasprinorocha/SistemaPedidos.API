@@ -1,12 +1,9 @@
 ﻿using Nelibur.ObjectMapper;
 using SistemaPedidos.API.Services.AuthenticationService.Services;
-using SistemaPedidos.Domain.Entities;
 using SistemaPedidos.Domain.Entities.Usuario;
 using SistemaPedidos.Domain.Interfaces.Business;
 using SistemaPedidos.Domain.Interfaces.Repository;
-using SistemaPedidos.Domain.ViewModels;
 using SistemaPedidos.Domain.ViewModels.Usuario;
-using SistemaPedidos.Orm.Core.Repositories;
 
 namespace SistemaPedidos.Business.Business
 {

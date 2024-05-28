@@ -34,7 +34,7 @@ namespace SistemaPedidos.Orm.Core.Repositories
             if (adesaoJaExiste is null)
             {
                 var ultimaAdesao = await _context.Adesao.OrderByDescending(c => c.CodigoAdesao).FirstOrDefaultAsync();
-                adesao.CodigoAdesao = ultimaAdesao.CodigoAdesao + 1;
+                adesao.CodigoAdesao = ultimaAdesao != null ? ultimaAdesao.CodigoAdesao + 1 : 1;
                 await _context.Adesao.AddAsync(adesao);
                 saved = await _context.SaveChangesAsync();
             }
