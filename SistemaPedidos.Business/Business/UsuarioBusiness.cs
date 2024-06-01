@@ -53,10 +53,10 @@ namespace SistemaPedidos.Business.Business
                 throw new Exception("Houve erro ao cadastrar usuário");
         }
 
-        public async Task<Guid> RecuperaIdAdesaoUsuarioPorIdAspnetUser(Guid idAspnetUser)
+        public async Task<Tuple<Guid, string>> RecuperaIdAdesaoENomeUsuarioPorIdAspnetUser(Guid idAspnetUser)
         {
-            Guid idAdesao = await _usuarioRepository.RecuperaIdAdesaoPorIdAspnetUser(idAspnetUser);
-            return idAdesao;
+            Tuple<Guid, string> result = await _usuarioRepository.RecuperaIdAdesaoENomePorIdAspnetUser(idAspnetUser);
+            return result;
         }
 
         public async Task<List<UsuarioViewModel>> RecuperaUsuariosAdesao(Guid idAdesao)

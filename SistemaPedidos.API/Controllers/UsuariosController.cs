@@ -25,8 +25,9 @@ namespace SistemaPedidos.API.Controllers
         {
             LoginUsuarioViewModel login = new() { Email = usuario, Password = senha };
             var autenticado = await _apiAuthService.Login(login);
-            var idAdesao = await _usuarioBusiness.RecuperaIdAdesaoUsuarioPorIdAspnetUser(new Guid(autenticado.Id));
-            autenticado.IdAdesao = idAdesao;
+            var result = await _usuarioBusiness.RecuperaIdAdesaoENomeUsuarioPorIdAspnetUser(new Guid(autenticado.Id));
+            autenticado.IdAdesao = result.Item1;
+            autenticado.Name = result.Item2;
             return Ok(autenticado);
         }
 

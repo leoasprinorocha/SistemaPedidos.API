@@ -6,7 +6,7 @@ namespace SistemaPedidos.Domain.Interfaces.Business
     {
         Task<UsuarioLogadoViewModel> Autenticar(string usuario, string senha);
         Task<UsuarioLogadoViewModel> CadastraNovoUsuario(CadastraUsuarioViewModel cadastraUsuarioViewModel);
-        Task<Guid> RecuperaIdAdesaoUsuarioPorIdAspnetUser(Guid idAspnetUser);
+        Task<Tuple<Guid, string>> RecuperaIdAdesaoENomeUsuarioPorIdAspnetUser(Guid idAspnetUser);
 
         Task<List<UsuarioViewModel>> RecuperaUsuariosAdesao(Guid idAdesao);
     }

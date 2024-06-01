@@ -6,7 +6,7 @@ namespace SistemaPedidos.Domain.Interfaces.Repository
     {
         Task<Usuario> RecuperaUsuarioPeloLogin(string login);
         Task<Usuario> CadastraNovoUsuario(Usuario usuario);
-        Task<Guid> RecuperaIdAdesaoPorIdAspnetUser(Guid idAspnetUser);
+        Task<Tuple<Guid, string>> RecuperaIdAdesaoENomePorIdAspnetUser(Guid idAspnetUser);
 
         Task<List<Usuario>> RecuperaTodosUsuariosAdesao(Guid idAdesao);
     }

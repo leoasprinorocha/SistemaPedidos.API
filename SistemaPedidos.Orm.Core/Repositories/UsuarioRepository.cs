@@ -38,12 +38,13 @@ namespace SistemaPedidos.Orm.Core.Repositories
 
         }
 
-        public async Task<Guid> RecuperaIdAdesaoPorIdAspnetUser(Guid idAspnetUser)
+        public async Task<Tuple<Guid, string>> RecuperaIdAdesaoENomePorIdAspnetUser(Guid idAspnetUser)
         {
             var usuario = await _context.Usuario.FirstOrDefaultAsync(c => c.IdAspnetUser == idAspnetUser);
             if (usuario is not null)
-                return usuario.IdAdesao;
-            return Guid.Empty;
+                return new Tuple<Guid, string>(usuario.IdAdesao, usuario.Nome);
+
+            return new Tuple<Guid, string>(Guid.Empty, string.Empty);
         }
 
         public async Task<List<Usuario>> RecuperaTodosUsuariosAdesao(Guid idAdesao)
