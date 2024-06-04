@@ -9,5 +9,9 @@ namespace SistemaPedidos.Domain.Interfaces.Repository
         Task<bool> AtualizaStatusPedido(StatusPedido statusPedido);
         Task<bool> AdicionaStatusPedido(StatusPedido statusPedido);
         Task<bool> ExcluiStatusPedido(Guid idStatus);
+
+        Task<List<Pedido>> RecuperaPedidosDataAtualAdesao(Guid idAdesao);
+
+        Task<List<PedidoProduto>> RecuperaProdutosDoPedido(Guid idAdesao);
     }
 }

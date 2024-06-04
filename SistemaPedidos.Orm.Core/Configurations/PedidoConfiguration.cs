@@ -21,12 +21,15 @@ namespace SistemaPedidos.Orm.Core.Configurations
                 .IsRequired();
 
             builder.Property(p => p.IdCliente)
-                .HasColumnType("varchar(36)")
-                .IsRequired();
+                .HasColumnType("varchar(36)");
 
             builder.Property(p => p.IdStatusPedido)
                             .HasColumnType("varchar(36)")
                             .IsRequired();
+
+            builder.Property(p => p.IdAdesao)
+            .HasColumnType("varchar(36)")
+            .IsRequired();
 
             builder.Property(p => p.ValorTotal)
                         .HasColumnType("decimal(7,2)")
@@ -35,6 +38,13 @@ namespace SistemaPedidos.Orm.Core.Configurations
             builder.Property(p => p.Data)
                                     .HasColumnType("datetime")
                                     .IsRequired();
+
+            builder.Property(p => p.CodigoPedido).HasColumnType("int").ValueGeneratedOnAdd();
+
+
+            builder.Property(p => p.Mesa)
+                            .HasColumnType("varchar(36)")
+                            .IsRequired();
 
 
             builder.ToTable("pedido");

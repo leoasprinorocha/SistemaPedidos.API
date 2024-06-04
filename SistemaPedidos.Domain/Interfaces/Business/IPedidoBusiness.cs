@@ -9,5 +9,6 @@ namespace SistemaPedidos.Domain.Interfaces.Business
         Task<bool> AtualizaStatusPedido(StatusPedidoViewModel statusPedido);
         Task<bool> AdicionaStatusPedido(StatusPedidoViewModel statusPedido);
         Task<bool> ExcluiStatusPedido(Guid idStatus);
+        Task<List<PedidoCompletoViewModel>> RecuperaPedidosDataAtualAdesao(Guid idAdesao);
     }
 }

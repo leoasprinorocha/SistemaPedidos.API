@@ -27,6 +27,10 @@ namespace SistemaPedidos.Orm.Core.Configurations
             .HasColumnType("varchar(36)")
             .IsRequired();
 
+            builder.Property(p => p.Quantidade)
+            .HasColumnType("int")
+            .IsRequired();
+
             builder.ToTable("pedidoproduto");
 
 

@@ -39,10 +39,10 @@ namespace SistemaPedidos.API.Controllers
         }
 
         [HttpPost("cadastrar")]
-        public async Task<IActionResult> CadastrarUsuario(CadastraUsuarioViewModel cadastraUsuarioViewModel)
+        public async Task<IActionResult> CadastrarUsuario([FromBody] CadastraUsuarioViewModel cadastraUsuarioViewModel)
         {
             var usuarioCriado = await _usuarioBusiness.CadastraNovoUsuario(cadastraUsuarioViewModel);
-            return Ok(usuarioCriado.Autenticado);
+            return Ok(usuarioCriado);
         }
 
     }

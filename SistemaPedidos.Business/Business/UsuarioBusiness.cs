@@ -1,6 +1,7 @@
 ﻿using Nelibur.ObjectMapper;
 using SistemaPedidos.API.Services.AuthenticationService.Services;
 using SistemaPedidos.Domain.Entities.Usuario;
+using SistemaPedidos.Domain.Enums.Messages.Usuario;
 using SistemaPedidos.Domain.Interfaces.Business;
 using SistemaPedidos.Domain.Interfaces.Repository;
 using SistemaPedidos.Domain.ViewModels.Usuario;
@@ -29,7 +30,7 @@ namespace SistemaPedidos.Business.Business
                 return new UsuarioLogadoViewModel { Autenticado = false };
         }
 
-        public async Task<UsuarioLogadoViewModel> CadastraNovoUsuario(CadastraUsuarioViewModel cadastraUsuarioViewModel)
+        public async Task<Tuple<bool, string>> CadastraNovoUsuario(CadastraUsuarioViewModel cadastraUsuarioViewModel)
         {
 
             TinyMapper.Bind<CadastraUsuarioViewModel, Usuario>();
@@ -48,7 +49,7 @@ namespace SistemaPedidos.Business.Business
 
             var usuarioSalvo = await _usuarioRepository.CadastraNovoUsuario(novoUsuario);
             if (usuarioSalvo is not null)
-                return new UsuarioLogadoViewModel { Autenticado = true };
+                return new Tuple<bool, string>(true, UsuariosMessages.SUCESSO_SALVAR_USUARIO);
             else
                 throw new Exception("Houve erro ao cadastrar usuário");
         }

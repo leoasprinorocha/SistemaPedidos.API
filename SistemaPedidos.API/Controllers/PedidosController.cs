@@ -20,6 +20,13 @@ namespace SistemaPedidos.API.Controllers
             return Ok(statusPedido);
         }
 
+        [HttpGet("recuperapedidosdataatualadesao/{idAdesao}")]
+        public async Task<IActionResult> RecuperaPedidosDataAtualAdesao(Guid idAdesao)
+        {
+            var pedidos = await _pedidoBusiness.RecuperaPedidosDataAtualAdesao(idAdesao);
+            return Ok(pedidos);
+        }
+
         [HttpGet("recuperastatuspedido/{idStatus}")]
         public async Task<IActionResult> RecuperaStatusPedido(Guid idStatus)
         {

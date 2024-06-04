@@ -48,6 +48,18 @@ namespace SistemaPedidos.Orm.Core.Repositories
             return statusPedidoFoiExcluido;
         }
 
+        public async Task<List<Pedido>> RecuperaPedidosDataAtualAdesao(Guid idAdesao)
+        {
+            var pedidosDataAtualAdesao = await _context.Pedido.Where(a => a.IdAdesao == idAdesao).ToListAsync();
+            return pedidosDataAtualAdesao;
+        }
+
+        public async Task<List<PedidoProduto>> RecuperaProdutosDoPedido(Guid idPedido)
+        {
+            var produtosDoPedido = await _context.PedidoProduto.Where(a => a.IdPedido == idPedido).ToListAsync();
+            return produtosDoPedido;
+        }
+
         public async Task<List<StatusPedido>> RecuperaStatusPedidoAdesao(Guid idAdesao)
         {
             var statusPedidoAdesao = await _context.StatusPedido.AsNoTracking().Where(c => c.IdAdesao == idAdesao).ToListAsync();
