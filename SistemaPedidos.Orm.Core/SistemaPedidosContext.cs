@@ -30,6 +30,7 @@ namespace SistemaPedidos.Orm.Core
         public DbSet<Pedido> Pedido { get; set; }
         public DbSet<PedidoProduto> PedidoProduto { get; set; }
         public DbSet<StatusPedido> StatusPedido { get; set; }
+        public DbSet<Mesa> Mesa { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

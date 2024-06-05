@@ -10,5 +10,6 @@ namespace SistemaPedidos.Domain.Interfaces.Business
         Task<bool> AdicionaStatusPedido(StatusPedidoViewModel statusPedido);
         Task<bool> ExcluiStatusPedido(Guid idStatus);
         Task<List<PedidoCompletoViewModel>> RecuperaPedidosDataAtualAdesao(Guid idAdesao);
+        Task<Tuple<bool, string>> SalvarPedido(PedidoCompletoViewModel pedidoCompleto);
     }
 }

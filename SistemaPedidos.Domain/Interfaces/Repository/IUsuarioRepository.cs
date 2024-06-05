@@ -1,4 +1,5 @@
-﻿using SistemaPedidos.Domain.Entities.Usuario;
+﻿using SistemaPedidos.Domain.Entities.Pedidos;
+using SistemaPedidos.Domain.Entities.Usuario;
 
 namespace SistemaPedidos.Domain.Interfaces.Repository
 {
@@ -9,5 +10,6 @@ namespace SistemaPedidos.Domain.Interfaces.Repository
         Task<Tuple<Guid, string>> RecuperaIdAdesaoENomePorIdAspnetUser(Guid idAspnetUser);
 
         Task<List<Usuario>> RecuperaTodosUsuariosAdesao(Guid idAdesao);
+        
     }
 }

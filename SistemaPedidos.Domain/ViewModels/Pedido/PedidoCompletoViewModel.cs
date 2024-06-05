@@ -9,7 +9,10 @@
         public int CodigoPedido { get; set; }
         public string Mesa { get; set; }
         public string ValorTotalString { get; set; }
+        public Guid IdMesa{ get;set; }
         public Guid IdPedido { get; set; }
+        public Guid IdAdesao{ get; set; }
+        public Guid IdStatusPedido{ get; set; }
         public List<PedidoProdutoSimplificadoViewModel> Produtos { get; set; }
     }
 }

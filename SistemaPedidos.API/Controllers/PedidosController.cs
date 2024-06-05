@@ -27,6 +27,13 @@ namespace SistemaPedidos.API.Controllers
             return Ok(pedidos);
         }
 
+        [HttpPost("salvarpedido")]
+        public async Task<IActionResult> SalvarPedido(PedidoCompletoViewModel pedidoCompleto)
+        {
+            var pedidos = await _pedidoBusiness.SalvarPedido(pedidoCompleto);
+            return Ok(pedidos);
+        }
+
         [HttpGet("recuperastatuspedido/{idStatus}")]
         public async Task<IActionResult> RecuperaStatusPedido(Guid idStatus)
         {

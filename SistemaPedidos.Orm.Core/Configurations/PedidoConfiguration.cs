@@ -31,6 +31,10 @@ namespace SistemaPedidos.Orm.Core.Configurations
             .HasColumnType("varchar(36)")
             .IsRequired();
 
+            builder.Property(p => p.IdMesa)
+            .HasColumnType("varchar(36)")
+            .IsRequired();
+
             builder.Property(p => p.ValorTotal)
                         .HasColumnType("decimal(7,2)")
                         .IsRequired();

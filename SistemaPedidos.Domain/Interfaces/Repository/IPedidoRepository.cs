@@ -13,5 +13,8 @@ namespace SistemaPedidos.Domain.Interfaces.Repository
         Task<List<Pedido>> RecuperaPedidosDataAtualAdesao(Guid idAdesao);
 
         Task<List<PedidoProduto>> RecuperaProdutosDoPedido(Guid idAdesao);
+
+        Task<Tuple<bool, Guid>> SalvarMesa(Mesa mesa);
+        Task<bool> SalvarPedido(Pedido pedido);
     }
 }

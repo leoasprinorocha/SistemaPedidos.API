@@ -72,5 +72,28 @@ namespace SistemaPedidos.Orm.Core.Repositories
             statusPedido = await _context.StatusPedido.AsNoTracking().FirstOrDefaultAsync(o => o.Id == idStatus);
             return statusPedido;
         }
+
+        public async Task<Tuple<bool, Guid>> SalvarMesa(Mesa mesa)
+        {
+            await _context.Mesa.AddAsync(mesa);
+            int registroSalvo = await _context.SaveChangesAsync();
+            if (registroSalvo > 0)
+            {
+                return new Tuple<bool, Guid>(true, mesa.Id);
+            }
+            else
+            {
+                return new Tuple<bool, Guid>(false, Guid.Empty);
+            }
+            
+
+        }
+
+        public async Task<bool> SalvarPedido(Pedido pedido)
+        {
+            await _context.Pedido.AddAsync(pedido);
+            int registroSalvo = await _context.SaveChangesAsync();
+            return registroSalvo > 0;
+        }
     }
 }

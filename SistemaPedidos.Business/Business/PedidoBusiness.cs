@@ -1,5 +1,6 @@
 ﻿using Nelibur.ObjectMapper;
 using SistemaPedidos.Domain.Entities.Pedidos;
+using SistemaPedidos.Domain.Enums.Messages.Pedido;
 using SistemaPedidos.Domain.Interfaces.Business;
 using SistemaPedidos.Domain.Interfaces.Repository;
 using SistemaPedidos.Domain.ViewModels.Pedido;
@@ -45,7 +46,7 @@ namespace SistemaPedidos.Business.Business
         {
             var pedidos = await _pedidoRepository.RecuperaPedidosDataAtualAdesao(idAdesao);
             var pedidosViewModel = await MontaObjetoPedidoCompleto(pedidos);
-            return pedidosViewModel;            
+            return pedidosViewModel;
         }
 
         public async Task<List<StatusPedidoViewModel>> RecuperaStatusPedidoAdesao(Guid idAdesao)
@@ -67,6 +68,34 @@ namespace SistemaPedidos.Business.Business
             return statusPedidoViewModel;
         }
 
+        public async Task<Tuple<bool, string>> SalvarPedido(PedidoCompletoViewModel pedidoCompleto)
+        {
+            Guid idMesa = Guid.Empty;
+            double valorTotalPedido = 0;
+
+            if (pedidoCompleto.IdMesa == Guid.Empty)
+            {
+                valorTotalPedido = pedidoCompleto.Produtos.Sum(a => a.Preco);
+                Mesa mesa = new Mesa(Guid.NewGuid(), pedidoCompleto.Mesa, valorTotalPedido);
+                var mesaFoiSalva = await _pedidoRepository.SalvarMesa(mesa);
+                if (mesaFoiSalva.Item1)
+                    idMesa = mesaFoiSalva.Item2;
+            }
+
+            if (pedidoCompleto.IdPedido == Guid.Empty)
+            {
+                Pedido pedido = new Pedido(idMesa, valorTotalPedido, pedidoCompleto.Mesa, pedidoCompleto.IdAdesao, pedidoCompleto.IdStatusPedido);
+                var pedidoFoiSalvo = await _pedidoRepository.SalvarPedido(pedido);
+                if (pedidoFoiSalvo)
+                    return new Tuple<bool, string>(true, PedidosMessage.SUCESSO_SALVAR_PEDIDO);
+                else
+                    return new Tuple<bool, string>(false, PedidosMessage.FALHA_SALVAR_PEDIDO);
+            }
+
+            return new Tuple<bool, string>(false, PedidosMessage.FALHA_SALVAR_PEDIDO);
+
+        }
+
         private async Task<List<PedidoCompletoViewModel>> MontaObjetoPedidoCompleto(List<Pedido> pedidos)
         {
             List<PedidoCompletoViewModel> pedidosEmAbertoDataAtualAdesaoViewModel = new();
@@ -85,7 +114,9 @@ namespace SistemaPedidos.Business.Business
                         PedidoProdutoSimplificadoViewModel pedidoProduto = new()
                         {
                             DescricaoProduto = produtoDoBanco.Descricao,
-                            Quantidade = produtoPedido.Quantidade
+                            Quantidade = produtoPedido.Quantidade,
+                            IdProduto = produtoPedido.Id,
+                            Preco = produtoDoBanco.Preco
                         };
 
                         produtosDoPedidoViewModel.Add(pedidoProduto);
@@ -101,7 +132,9 @@ namespace SistemaPedidos.Business.Business
                     Data = pedido.Data,
                     Mesa = pedido.Mesa,
                     ValorTotalString = $"R$ {pedido.ValorTotal}",
-                    Produtos = produtosDoPedidoViewModel
+                    Produtos = produtosDoPedidoViewModel,
+                    IdAdesao = pedido.IdAdesao,
+                    IdStatusPedido = pedido.IdStatusPedido
                 };
 
                 pedidosEmAbertoDataAtualAdesaoViewModel.Add(pedidoViewModel);
